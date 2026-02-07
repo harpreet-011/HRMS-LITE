@@ -20,7 +20,27 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const fetchDashboardData = async () => {
+  const prepareChartData = useCallback((atts) => {
+    const last7Days = [];
+    for (let i = 6; i >= 0; i--) {
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      const dateStr = date.toISOString().split('T')[0];
+      const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
+
+      const dayAttendance = atts.filter(a => a.date === dateStr);
+      last7Days.push({
+        date: dayName,
+        fullDate: dateStr,
+        Present: dayAttendance.filter(a => a.status === 'Present').length,
+        Absent: dayAttendance.filter(a => a.status === 'Absent').length,
+        Leave: dayAttendance.filter(a => a.status === 'Leave').length,
+      });
+    }
+    setChartData(last7Days);
+  }, []);
+
+  const fetchDashboardData = useCallback(async () => {
     try {
       setLoading(true);
       const [empRes, attRes] = await Promise.all([
@@ -69,27 +89,9 @@ function Dashboard() {
 
   useEffect(() => {
     fetchDashboardData();
-  }, []);
+  }, [fetchDashboardData, prepareChartData]);
 
-  const prepareChartData = (atts) => {
-    const last7Days = [];
-    for (let i = 6; i >= 0; i--) {
-      const date = new Date();
-      date.setDate(date.getDate() - i);
-      const dateStr = date.toISOString().split('T')[0];
-      const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
-
-      const dayAttendance = atts.filter(a => a.date === dateStr);
-      last7Days.push({
-        date: dayName,
-        fullDate: dateStr,
-        Present: dayAttendance.filter(a => a.status === 'Present').length,
-        Absent: dayAttendance.filter(a => a.status === 'Absent').length,
-        Leave: dayAttendance.filter(a => a.status === 'Leave').length,
-      });
-    }
-    setChartData(last7Days);
-  };
+  
 
   if (loading) {
     return <div className="dashboard-loading">Loading Dashboard...</div>;
