@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
-  BarChart, Bar, LineChart, Line, PieChart, Pie, Cell,
+  BarChart, Bar, PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
 import { employeeAPI, attendanceAPI } from '../api';
@@ -19,10 +19,6 @@ function Dashboard() {
   const [statusData, setStatusData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-
-  useEffect(() => {
-    fetchDashboardData();
-  }, []);
 
   const fetchDashboardData = async () => {
     try {
@@ -70,6 +66,10 @@ function Dashboard() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, []);
 
   const prepareChartData = (atts) => {
     const last7Days = [];

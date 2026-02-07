@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { attendanceAPI, employeeAPI } from '../api';
 import '../styles/AttendanceHistory.css';
 
@@ -18,7 +18,7 @@ function AttendanceHistory() {
 
   useEffect(() => {
     applyFilters();
-  }, [selectedEmployee, selectedDate, selectedStatus, history]);
+  }, [applyFilters]);
 
   const fetchData = async () => {
     try {
@@ -37,7 +37,7 @@ function AttendanceHistory() {
     }
   };
 
-  const applyFilters = () => {
+  const applyFilters = useCallback(() => {
     let filtered = [...history];
 
     if (selectedEmployee) {
@@ -54,7 +54,7 @@ function AttendanceHistory() {
 
     filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
     setFilteredHistory(filtered);
-  };
+  }, [history, selectedEmployee, selectedDate, selectedStatus]);
 
   const getEmployeeName = (employeeId) => {
     const emp = employees.find(e => e.employee_id === employeeId);
