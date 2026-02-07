@@ -1,6 +1,12 @@
 import os
 import urllib.parse
 from dotenv import load_dotenv
+# Prefer using certifi on hosted platforms so OpenSSL has a proper CA bundle
+try:
+	import certifi
+	CA_BUNDLE = certifi.where()
+except Exception:
+	CA_BUNDLE = None
 from pymongo import MongoClient
 from pymongo.errors import OperationFailure
 
@@ -11,7 +17,11 @@ MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
 
 # Create client with a short server selection timeout so failures are detected quickly
 def make_client(uri):
-	return MongoClient(uri, serverSelectionTimeoutMS=5000)
+	opts = {"serverSelectionTimeoutMS": 5000, "connectTimeoutMS": 10000, "socketTimeoutMS": None}
+	if CA_BUNDLE:
+		opts["tls"] = True
+		opts["tlsCAFile"] = CA_BUNDLE
+	return MongoClient(uri, **opts)
 
 # Try creating a client and verify with a lightweight ping
 client = make_client(MONGO_URI)
