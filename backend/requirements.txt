@@ -4,3 +4,4 @@ pymongo
 python-dotenv
 email-validator
 dnspython
+certifi
