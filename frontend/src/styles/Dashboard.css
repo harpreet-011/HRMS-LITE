@@ -1,0 +1,314 @@
+.dashboard {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-header {
+  margin-bottom: 30px;
+  border-bottom: 3px solid #667eea;
+  padding-bottom: 20px;
+}
+
+.dashboard-header h2 {
+  font-size: 2.2rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.dashboard-header p {
+  color: #666;
+  font-size: 1rem;
+}
+
+.dashboard-loading {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 1.1rem;
+  color: #667eea;
+}
+
+.error-message {
+  background-color: #fee;
+  color: #c33;
+  padding: 12px 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border-left: 4px solid #c33;
+}
+
+/* Statistics Cards */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 25px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.stat-card.total-employees {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.stat-card.present {
+  background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+}
+
+.stat-card.absent {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+}
+
+.stat-card.leave {
+  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  opacity: 0.9;
+}
+
+.stat-content h3 {
+  font-size: 0.95rem;
+  margin-bottom: 5px;
+  opacity: 0.95;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Charts Section */
+.charts-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.chart-container {
+  background-color: #f8f9ff;
+  border-radius: 12px;
+  padding: 25px;
+  border: 2px solid #e0e0ff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.chart-container h3 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 10px;
+}
+
+/* Dashboard Sections */
+.dashboard-section {
+  background-color: #f8f9ff;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 25px;
+  border: 2px solid #e0e0ff;
+}
+
+.dashboard-section h3 {
+  color: #333;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 10px;
+}
+
+/* Department Distribution */
+.department-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.department-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.dept-name {
+  min-width: 120px;
+  font-weight: 600;
+  color: #333;
+}
+
+.dept-bar {
+  flex: 1;
+  height: 30px;
+  background-color: white;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.dept-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.dept-progress:hover {
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.5) inset;
+}
+
+/* Recent Attendance */
+.recent-attendance {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.attendance-item {
+  background-color: white;
+  border-left: 4px solid #667eea;
+  padding: 15px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.attendance-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-date {
+  font-weight: 600;
+  color: #667eea;
+  font-size: 0.95rem;
+}
+
+.attendance-details {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.emp-id {
+  color: #555;
+  font-weight: 500;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-present {
+  background-color: #d5f4e6;
+  color: #27ae60;
+}
+
+.status-absent {
+  background-color: #fadbd8;
+  color: #e74c3c;
+}
+
+.status-leave {
+  background-color: #fdebd0;
+  color: #f39c12;
+}
+
+/* Scrollbar Styling */
+.recent-attendance::-webkit-scrollbar {
+  width: 8px;
+}
+
+.recent-attendance::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.recent-attendance::-webkit-scrollbar-thumb {
+  background: #667eea;
+  border-radius: 10px;
+}
+
+.recent-attendance::-webkit-scrollbar-thumb:hover {
+  background: #764ba2;
+}
+
+@media (max-width: 1024px) {
+  .charts-section {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    padding: 20px;
+  }
+
+  .stat-icon {
+    font-size: 2rem;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard {
+    padding: 15px;
+  }
+
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .stat-icon {
+    font-size: 2rem;
+  }
+
+  .chart-container {
+    padding: 15px;
+  }
+
+  .dashboard-section {
+    padding: 15px;
+  }
+}

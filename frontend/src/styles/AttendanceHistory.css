@@ -1,0 +1,337 @@
+.attendance-history {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.history-header {
+  margin-bottom: 30px;
+  border-bottom: 3px solid #667eea;
+  padding-bottom: 20px;
+}
+
+.history-header h2 {
+  font-size: 2.2rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.history-header p {
+  color: #666;
+  font-size: 1rem;
+}
+
+.error-message {
+  background-color: #fee;
+  color: #c33;
+  padding: 12px 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border-left: 4px solid #c33;
+}
+
+/* Filters Section */
+.filters-section {
+  background-color: #f8f9ff;
+  border: 2px solid #e0e0ff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.filters-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  align-items: flex-end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-group label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.filter-group select,
+.filter-group input {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.filter-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.clear-btn,
+.export-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.clear-btn {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.clear-btn:hover {
+  background-color: #7f8c8d;
+  transform: translateY(-2px);
+}
+
+.export-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.export-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* Statistics Bar */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+  padding: 15px;
+  background-color: #f8f9ff;
+  border-radius: 8px;
+  border: 1px solid #e0e0ff;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 12px;
+  background-color: white;
+  border-radius: 6px;
+  border-left: 4px solid #667eea;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.stat-value.present {
+  color: #27ae60;
+}
+
+.stat-value.absent {
+  color: #e74c3c;
+}
+
+.stat-value.leave {
+  color: #f39c12;
+}
+
+.attendance-rate .stat-value {
+  color: #667eea;
+}
+
+/* Table Container */
+.table-container {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.loading,
+.no-data {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.history-table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.history-table th {
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.history-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.history-table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.history-table tbody tr:hover {
+  background-color: #f8f9ff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.history-table tbody tr.row-present {
+  border-left: 4px solid #27ae60;
+}
+
+.history-table tbody tr.row-absent {
+  border-left: 4px solid #e74c3c;
+}
+
+.history-table tbody tr.row-leave {
+  border-left: 4px solid #f39c12;
+}
+
+.date-cell {
+  font-weight: 600;
+  color: #667eea;
+}
+
+.day-cell {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.emp-id-cell {
+  font-weight: 600;
+  color: #333;
+}
+
+.emp-name-cell {
+  color: #555;
+}
+
+.dept-cell {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.status-cell {
+  text-align: center;
+}
+
+.status-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.status-present {
+  background-color: #d5f4e6;
+  color: #27ae60;
+}
+
+.status-absent {
+  background-color: #fadbd8;
+  color: #e74c3c;
+}
+
+.status-leave {
+  background-color: #fdebd0;
+  color: #f39c12;
+}
+
+/* Pagination Info */
+.pagination-info {
+  text-align: right;
+  color: #666;
+  font-size: 0.95rem;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .filters-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filter-actions {
+    grid-column: 1 / -1;
+  }
+
+  .stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .attendance-history {
+    padding: 15px;
+  }
+
+  .filters-row {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-actions {
+    grid-column: auto;
+    flex-direction: column;
+  }
+
+  .clear-btn,
+  .export-btn {
+    width: 100%;
+  }
+
+  .stats-bar {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .history-table {
+    font-size: 0.9rem;
+  }
+
+  .history-table th,
+  .history-table td {
+    padding: 10px;
+  }
+
+  .history-table th {
+    font-size: 0.8rem;
+  }
+}
