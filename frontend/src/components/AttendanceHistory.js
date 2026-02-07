@@ -12,6 +12,25 @@ function AttendanceHistory() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const applyFilters = useCallback(() => {
+    let filtered = [...history];
+
+    if (selectedEmployee) {
+      filtered = filtered.filter(h => h.employee_id === selectedEmployee);
+    }
+
+    if (selectedDate) {
+      filtered = filtered.filter(h => h.date === selectedDate);
+    }
+
+    if (selectedStatus) {
+      filtered = filtered.filter(h => h.status === selectedStatus);
+    }
+
+    filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+    setFilteredHistory(filtered);
+  }, [history, selectedEmployee, selectedDate, selectedStatus]);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -37,24 +56,6 @@ function AttendanceHistory() {
     }
   };
 
-  const applyFilters = useCallback(() => {
-    let filtered = [...history];
-
-    if (selectedEmployee) {
-      filtered = filtered.filter(h => h.employee_id === selectedEmployee);
-    }
-
-    if (selectedDate) {
-      filtered = filtered.filter(h => h.date === selectedDate);
-    }
-
-    if (selectedStatus) {
-      filtered = filtered.filter(h => h.status === selectedStatus);
-    }
-
-    filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
-    setFilteredHistory(filtered);
-  }, [history, selectedEmployee, selectedDate, selectedStatus]);
 
   const getEmployeeName = (employeeId) => {
     const emp = employees.find(e => e.employee_id === employeeId);

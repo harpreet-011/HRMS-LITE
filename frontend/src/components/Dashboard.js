@@ -85,11 +85,11 @@ function Dashboard() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [prepareChartData]);
 
   useEffect(() => {
     fetchDashboardData();
-  }, [fetchDashboardData, prepareChartData]);
+  }, [fetchDashboardData]);
 
   
 
