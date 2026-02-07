@@ -20,13 +20,16 @@ app.add_middleware(
 @app.on_event("startup")
 def startup_event():
     try:
-        # Test connection
-        client.admin.command('ismaster')
+        # Test connection using a lightweight ping
+        client.admin.command('ping')
         print("✅ MongoDB Atlas connected successfully!")
     except Exception as e:
-        print(f"⚠️  Warning: MongoDB connection issue: {str(e)}")
+        import traceback
+        print("⚠️  Warning: MongoDB connection issue during startup:")
+        traceback.print_exc()
+        print(f"Exception repr: {repr(e)}")
         print("   The server is running, but database operations may fail.")
-        print("   Check MONGODB_ATLAS_SETUP.md for troubleshooting steps.")
+        print("   Check MONGODB_ATLAS_SETUP.md for troubleshooting steps and ensure the Render service's outbound IPs are allowed in Atlas.")
 
 @app.get("/")
 def root():
