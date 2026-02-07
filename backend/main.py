@@ -30,6 +30,35 @@ def startup_event():
         print(f"Exception repr: {repr(e)}")
         print("   The server is running, but database operations may fail.")
         print("   Check MONGODB_ATLAS_SETUP.md for troubleshooting steps and ensure the Render service's outbound IPs are allowed in Atlas.")
+        # Additional TLS/SSL debug information to help diagnose handshake failures on hosted platforms
+        try:
+            import ssl
+            import socket
+            print(f"OpenSSL: {ssl.OPENSSL_VERSION}")
+            try:
+                import certifi
+                cafile = certifi.where()
+                print(f"certifi CA bundle: {cafile}")
+            except Exception:
+                cafile = None
+                print("certifi not available in environment")
+            print("ssl.get_default_verify_paths():", ssl.get_default_verify_paths())
+            # Try a direct TLS handshake to known shard hosts with a short timeout
+            hosts = [
+                "ac-rcjlgok-shard-00-00.styj2om.mongodb.net",
+                "ac-rcjlgok-shard-00-01.styj2om.mongodb.net",
+                "ac-rcjlgok-shard-00-02.styj2om.mongodb.net",
+            ]
+            for h in hosts:
+                try:
+                    ctx = ssl.create_default_context(cafile=cafile) if cafile else ssl.create_default_context()
+                    with socket.create_connection((h, 27017), timeout=5) as sock:
+                        with ctx.wrap_socket(sock, server_hostname=h) as ssock:
+                            print(f"TLS handshake to {h} succeeded: protocol={ssock.version()}, cipher={ssock.cipher()}")
+                except Exception as e2:
+                    print(f"TLS check to {h} failed: {e2}")
+        except Exception as dbg_e:
+            print(f"Failed to run TLS debug checks: {dbg_e}")
 
 @app.get("/")
 def root():
